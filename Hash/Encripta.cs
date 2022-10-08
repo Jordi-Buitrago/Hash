@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.Runtime.CompilerServices;
 using static System.Net.Mime.MediaTypeNames;
+using System.ComponentModel;
 
 namespace Hash
 {
     class Encripta
     {
-        public Byte[] CreateHash (Byte[] text)
+        public void CreateHash (Byte[] text)
         {
+
             // Convertim l'string a un array de bytes
-            //byte[] bytesIn = UTF8Encoding.UTF8.GetBytes(text);
+            byte[] bytesIn = text;
             // Instanciar classe per fer hash
             SHA512Managed SHA512 = new SHA512Managed();
             // Calcular hash
@@ -26,9 +28,7 @@ namespace Hash
             Console.ReadKey();
             // Eliminem la classe instanciada
             SHA512.Dispose();
-
-            return (text);
-
+            File.WriteAllBytes("hola.hash", hashResult);
         }   
     }
 }
